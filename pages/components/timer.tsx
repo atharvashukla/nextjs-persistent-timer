@@ -119,24 +119,24 @@ export default function TimerComponent() {
     return useTimerStore.subscribe((state) => (timerRef.current = state.timer));
   }, []);
 
-  if (isClient === false) return <p>Server Timer</p>;
-  if (!timer) return <p>Timer Not Initialized</p>;
+  if (isClient === false) return <span>00:00</span>;
+  if (!timer) return <span>00:00</span>;
 
   let timerSeconds = Math.floor((timer.endTime - timer.currentTime) / 1000);
   let ttlSeconds = Math.floor(timer.restartTime - timer.currentTime) / 1000;
   const padTime = (time: number) => (time < 10 ? `0${time}` : time);
 
   return timer.endTime >= timer.currentTime ? (
-    <p>
-      Current timer: {padTime(Math.floor(timerSeconds / 60))}
+    <span>
+      {padTime(Math.floor(timerSeconds / 60))}
       {" : "}
       {padTime(timerSeconds % 60)}
-    </p>
+    </span>
   ) : (
-    <p>
-      Re-live: {padTime(Math.floor(ttlSeconds / 60))}
+    <span>
+      {padTime(Math.floor(ttlSeconds / 60))}
       {" : "}
       {padTime(ttlSeconds % 60)}
-    </p>
+    </span>
   );
 }
