@@ -3,4 +3,4 @@
 Persistent timer with Next.js (Pages)
 
 - Zustand
-- Next.js (Pager)
+- Next.js (Pages)
